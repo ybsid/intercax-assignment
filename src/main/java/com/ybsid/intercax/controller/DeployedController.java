@@ -44,7 +44,7 @@ public class DeployedController {
         bot.setName(robot.getName());
         bot.setYearBuilt(LocalDate.parse(robot.getYearBuilt(),pattern));
         bot.setListOfFunctions(robot.getListOfFunctions());
-        bot.setState("deployed");
+        bot.setState(robot.getState());
         bot = repository.save(bot);
         LOGGER.info("Returning newly created tested bot");
         return bot;
@@ -56,7 +56,7 @@ public class DeployedController {
         return repository.findById(id)
                 .map(robots -> {
                     robots.setListOfFunctions(bot.getListOfFunctions());
-                    robots.setState("deployed");
+                    robots.setState(bot.getState());
                     robots.setName(bot.getName());
                     robots.setListOfFunctions(bot.getListOfFunctions());
                     robots.setMass(bot.getMass());
@@ -66,7 +66,7 @@ public class DeployedController {
                 .orElseGet(()->{
                     Robots robots = new Robots();
                     robots.setListOfFunctions(bot.getListOfFunctions());
-                    robots.setState("deployed");
+                    robots.setState(bot.getState());
                     robots.setName(bot.getName());
                     robots.setListOfFunctions(bot.getListOfFunctions());
                     robots.setMass(bot.getMass());

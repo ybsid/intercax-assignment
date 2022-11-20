@@ -45,7 +45,7 @@ public class DesignController {
         bot.setName(robot.getName());
         bot.setYearBuilt(LocalDate.parse(robot.getYearBuilt(),pattern));
         bot.setListOfFunctions(robot.getListOfFunctions());
-        bot.setState("designed");
+        bot.setState(bot.getState());
         bot = repository.save(bot);
         LOGGER.info("Returning newly created bot");
         return bot;
@@ -57,7 +57,7 @@ public class DesignController {
         return repository.findById(id)
                 .map(robots -> {
                     robots.setListOfFunctions(bot.getListOfFunctions());
-                    robots.setState("designed");
+                    robots.setState(bot.getState());
                     robots.setName(bot.getName());
                     robots.setListOfFunctions(bot.getListOfFunctions());
                     robots.setMass(bot.getMass());
@@ -67,7 +67,7 @@ public class DesignController {
                 .orElseGet(()->{
                     Robots robots = new Robots();
                     robots.setListOfFunctions(bot.getListOfFunctions());
-                    robots.setState("designed");
+                    robots.setState(bot.getState());
                     robots.setName(bot.getName());
                     robots.setListOfFunctions(bot.getListOfFunctions());
                     robots.setMass(bot.getMass());
